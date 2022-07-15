@@ -2,19 +2,16 @@ import { StarOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import Meta from "antd/lib/card/Meta";
 
-const PokemonCard = ({ name, img }) => {
+const PokemonCard = ({ name, img, abilities }) => {
   return (
     <Card
       title={name}
-      cover={
-        <img
-          alt={name}
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-        />
-      }
+      cover={<img alt={name} src={img} />}
       extra={<StarOutlined />}
     >
-      <Meta description="The Ditto Pokémon can transform into anything it sees, including itself." />
+      {abilities.map((ability) => {
+        return <Meta description={ability.ability.name} />;
+      })}
     </Card>
   );
 };
